@@ -36,7 +36,7 @@ namespace PPtDisplay
 
             #region Extra
             Penwidth = 4;
-            InkColorIndex = 15;
+            InkColorIndex = 14;
             GridInkColor_InitilizeComponent();
             #endregion
         }

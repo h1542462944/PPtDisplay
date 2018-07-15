@@ -180,8 +180,11 @@ namespace PPtDisplay
 
         public void OpenFile(string fullName)
         {
-            Application application = new Application();
-            application.Presentations.Open(fullName, MsoTriState.msoTrue);
+            Task.Run(() => 
+            {
+                Application application = new Application();
+                application.Presentations.Open(fullName, MsoTriState.msoTrue);
+            });
         }
         /// <summary>
         /// 开始放映ppt(从当前页开始).

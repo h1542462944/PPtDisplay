@@ -26,21 +26,21 @@ namespace PPtDisplay
         {
             InitializeComponent();
             Loaded += OpenPage_Loaded;
-        
+
             App.Inventories_AddItem += App_Inventories_AddItem;
             App.Inventories_RemoveAllItem += App_Inventories_RemoveAllItem;
         }
 
         private void App_Inventories_RemoveAllItem()
         {
-            Dispatcher.Invoke(()=> 
+            Dispatcher.Invoke(() =>
             {
                 StackPanel.Children.Clear();
-            });             
+            });
         }
         private void App_Inventories_AddItem(string obj)
         {
-            Dispatcher.Invoke(() => 
+            Dispatcher.Invoke(() =>
             {
                 FileInfo f = new FileInfo(obj);
                 Model.IconButton2 u = new Model.IconButton2
@@ -64,18 +64,18 @@ namespace PPtDisplay
             Model.IconButton2 b = (Model.IconButton2)sender;
             string fullname = b.Text2 + @"\" + b.Text;
             App.PPtWatcher.OpenFile(fullname);
-      
+
         }
         private void IconButtonOpenFile_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog()
             {
-                Filter ="演示文稿(*.ppt,*.pptx) | *.ppt; *.pptx"
+                Filter = "演示文稿(*.ppt,*.pptx) | *.ppt; *.pptx"
             };
             var result = openFileDialog.ShowDialog();
             if (result == true)
             {
-                App.PPtWatcher.OpenFile(openFileDialog.FileName);
+                 App.PPtWatcher.OpenFile(openFileDialog.FileName);
             }
         }
     }
