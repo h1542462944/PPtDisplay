@@ -15,6 +15,6 @@
         <Grid x:Name="GridTitle" Background="Transparent">
             <TextBlock Text="PPtDisplay" Foreground="White" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
         </Grid>
-        <TextBlock Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="&#xe8ae;" Foreground="White" FontSize="130"/>
+        <TextBlock Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Assets/#Segoe MDL2 Assets" Text="&#xe8ae;" Foreground="White" FontSize="130"/>
     </Grid>
 </Page>

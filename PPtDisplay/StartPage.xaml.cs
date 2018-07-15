@@ -31,7 +31,6 @@ namespace PPtDisplay
         private async void StartPage_Loaded(object sender, RoutedEventArgs e)
         {
             await Task.Run(() => System.Threading.Thread.Sleep(1000));
-            await App.LoadUserSettingsAsync();
             await App.Inventory.LoadAsync();
             if (App.PPtWatcher.Application != null)
             {

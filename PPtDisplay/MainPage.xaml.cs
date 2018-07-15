@@ -25,7 +25,28 @@ namespace PPtDisplay
             InitializeComponent();
             App.Window.SetTitleBar(GridTitle);
             NavigateTo(typeof(OpenPage));
+            App.Start_Fresh += () =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    IconButtonFresh.Visibility = Visibility.Visible;
+                });
+            };
+            App.End_Fresh += () =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    IconButtonFresh.Visibility = Visibility.Collapsed;
+                });
+            };
+            Loaded += MainPage_Loaded;
         }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            FrameSettings.Content = new SettingsPage();
+        }
+
         void NavigateTo(Type pageType)
         {
             Page p = (Page)Activator.CreateInstance(pageType);
@@ -39,10 +60,6 @@ namespace PPtDisplay
         private void IconButtonSettings_Click(object sender, RoutedEventArgs e)
         {
             GridExtra.Visibility = Visibility.Visible;
-            if (FrameSettings.Content==null)
-            {
-                FrameSettings.Content = new SettingsPage();
-            }
         }
 
     }

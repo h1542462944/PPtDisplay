@@ -26,7 +26,7 @@
                 <Grid Background="Transparent" x:Name="GridTitle" Grid.Column="1" >
                     <TextBlock Text="PPtDisplay" Foreground="White" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </Grid>
-                <model:IconButton Foreground="White" Text="&#xe946;" Grid.Column="2" FontSize="16" Width="32"/>
+                <model:IconButton x:Name="IconButtonFresh"  Text="&#xe895;" Grid.Column="2" FontSize="16" Foreground="White" Width="32" Visibility="Collapsed"/>
             </Grid>
             <Frame x:Name="FrameContent" Grid.Row="1" NavigationUIVisibility="Hidden" />
         </Grid>

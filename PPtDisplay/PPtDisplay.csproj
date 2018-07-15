@@ -73,6 +73,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\IconButton3.xaml.cs">
+      <DependentUpon>IconButton3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\IconButton2.xaml.cs">
       <DependentUpon>IconButton2.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
     <Page Include="Model\IconButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Model\IconButton3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Model\IconButton2.xaml">
       <SubType>Designer</SubType>
@@ -159,9 +166,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Assets\fontawesome-webfont.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Assets\segmdl2.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

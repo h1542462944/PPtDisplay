@@ -23,9 +23,15 @@ namespace PPtDisplay.Data
         /// <summary>
         /// 表示目录集,用于<see cref="OpenPage"/>.
         /// </summary>
-        public List<string> Inventorys { get; set; } = new List<string>
+        public List<string> Inventories { get; set; } = new List<string>
         {
             @"D:\PPt\"
         };
+
+        public void RaiseEvent()
+        {
+            InventoriesChanged?.Invoke(this, new EventArgs());
+        }
+        public event EventHandler InventoriesChanged;
     }
 }

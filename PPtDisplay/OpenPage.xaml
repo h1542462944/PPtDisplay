@@ -14,13 +14,12 @@
             <ColumnDefinition Width="440"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <model:IconButton2 Icon="&#xe8e5;" Text="打开文件"/>
+            <model:IconButton2 Icon="&#xe8e5;" Text="打开文件" Click="IconButtonOpenFile_Click"/>
             <ScrollViewer Grid.Row="1" Style="{StaticResource IScrollViewer}">
                 <StackPanel x:Name="StackPanel">
 

@@ -58,23 +58,73 @@ namespace PPtDisplay
         }
         public static async Task LoadUserSettingsAsync()
         {
-
             await Task.Run(() =>
             {
-                foreach (var folder in App.Inventory.Inventorys)
+                Start_Fresh?.Invoke();
+                PPts.Clear();
+                Inventories_RemoveAllItem?.Invoke();
+                //这一层{try}是为了防止异步导致的foreach发生集合已修改而产生的异常.
+                try
                 {
-                    if (Directory.Exists(folder))
+                    foreach (var folder in App.Inventory.Inventories)
                     {
-                        DirectoryInfo d = new DirectoryInfo(folder);
+                        //这一层{try}是为了排除内部错误.
+                        try
+                        {
+                            if (Directory.Exists(folder))
+                            {
+                                DirectoryInfo d = new DirectoryInfo(folder);
+
+                                foreach (var item in d.GetFiles("*", SearchOption.AllDirectories))
+                                {
+                                    if ((item.Extension == ".ppt" || item.Extension == ".pptx") && (item.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden)
+                                    {
+                                        if (!PPts.Contains(item.FullName))
+                                        {
+                                            PPts.Add(item.FullName);
+                                            Inventories_AddItem?.Invoke(item.FullName);
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                End_Fresh?.Invoke();
+            });
+        }
+        public static async Task<bool> IsFolderHasPPt(string folder)
+        {
+            return await Task.Run(() =>
+            {
+
+                if (Directory.Exists(folder))
+                {
+                    DirectoryInfo d = new DirectoryInfo(folder);
+                    try
+                    {
                         foreach (var item in d.GetFiles("*", SearchOption.AllDirectories))
                         {
                             if ((item.Extension == ".ppt" || item.Extension == ".pptx") && (item.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden)
                             {
-                                PPts.Add(item.FullName);
+                                return true;
                             }
                         }
                     }
+                    catch (Exception)
+                    {
+
+                    }
                 }
+
+                return false;
             });
         }
         public static async Task SaveUserSettingsAsync()
@@ -87,13 +137,16 @@ namespace PPtDisplay
         /// 获取程序的主窗体.
         /// </summary>
         public static MainWindow Window { get; set; }
-        public static DisplayWindow DisplayWindow { get; set; } 
+        public static DisplayWindow DisplayWindow { get; set; }
         public static string WindowSettingsPath => LocalCache + "WindowSettings.xml";
         public static List<string> PPts { get; set; } = new List<string>();
         internal static readonly Inventory Inventory = new Inventory();
         public static PPtWatcher PPtWatcher { get; set; } = new PPtWatcher();
         public static Size ScreenSize => new Size(SystemParameters.PrimaryScreenWidth, SystemParameters.PrimaryScreenHeight);
-
+        public static event Action Inventories_RemoveAllItem;
+        public static event Action<string> Inventories_AddItem;
+        public static event Action Start_Fresh;
+        public static event Action End_Fresh;
         static App()
         {
             PPtWatcher.PPtApplictionChanged += PPtWatcher_PPtApplictionChanged;
@@ -110,7 +163,7 @@ namespace PPtDisplay
         }
         private static void PPtWatcher_PPtApplictionChanged(object sender, EventArgs e)
         {
-            if (App.PPtWatcher.Application== null)
+            if (App.PPtWatcher.Application == null)
             {
                 App.GotoMainWindow();
             }
@@ -120,7 +173,7 @@ namespace PPtDisplay
         /// </summary>
         public static void GotoDisplayWindow()
         {
-            App.Window.Dispatcher.Invoke(() => 
+            App.Window.Dispatcher.Invoke(() =>
             {
                 if (Window.Visibility == Visibility.Visible)
                 {
@@ -131,7 +184,7 @@ namespace PPtDisplay
                     }
                     DisplayWindow = new DisplayWindow();
                     DisplayWindow.Show();
-                }   
+                }
             });
         }
         /// <summary>

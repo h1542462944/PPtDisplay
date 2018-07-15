@@ -26,31 +26,57 @@ namespace PPtDisplay
         {
             InitializeComponent();
             Loaded += OpenPage_Loaded;
+        
+            App.Inventories_AddItem += App_Inventories_AddItem;
+            App.Inventories_RemoveAllItem += App_Inventories_RemoveAllItem;
         }
-        private void OpenPage_Loaded(object sender, RoutedEventArgs e)
+
+        private void App_Inventories_RemoveAllItem()
         {
-            int index = 0;        
-            foreach (var item in App.PPts)
+            Dispatcher.Invoke(()=> 
             {
-                FileInfo f = new FileInfo(item);
+                StackPanel.Children.Clear();
+            });             
+        }
+        private void App_Inventories_AddItem(string obj)
+        {
+            Dispatcher.Invoke(() => 
+            {
+                FileInfo f = new FileInfo(obj);
                 Model.IconButton2 u = new Model.IconButton2
                 {
-                    Name = "IconButton2_" + index,
                     Icon = "\xe8ae",
                     Text = f.Name,
                     Text2 = f.DirectoryName
                 };
                 u.Click += U_Click;
                 StackPanel.Children.Add(u);
-                index++;
-            }
+            });
         }
+
+        private async void OpenPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await App.LoadUserSettingsAsync();
+        }
+
         private void U_Click(object sender, RoutedEventArgs e)
         {
             Model.IconButton2 b = (Model.IconButton2)sender;
             string fullname = b.Text2 + @"\" + b.Text;
             App.PPtWatcher.OpenFile(fullname);
       
+        }
+        private void IconButtonOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog()
+            {
+                Filter ="演示文稿(*.ppt,*.pptx) | *.ppt; *.pptx"
+            };
+            var result = openFileDialog.ShowDialog();
+            if (result == true)
+            {
+                App.PPtWatcher.OpenFile(openFileDialog.FileName);
+            }
         }
     }
 }

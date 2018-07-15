@@ -1,0 +1,30 @@
+﻿<UserControl x:Name="IconButton3this" x:Class="PPtDisplay.Model.IconButton3"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PPtDisplay.Model"
+             mc:Ignorable="d" 
+             Height="40" Width="300" Background="Transparent" Margin="10,4" HorizontalAlignment="Left" MouseMove="IconButton3_MouseMove" MouseUp="IconButton3_MouseUp" MouseLeave="IconButton3_MouseLeave">
+    <Grid>
+        <Grid Background="Transparent" MouseDown="Grid_MouseDown" MouseLeave="Grid_MouseLeave" MouseUp="Grid_MouseUp">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="TextBlockError" Grid.Column="0" Style="{StaticResource IFont}" Text="&#xe7ba;" Foreground="Orange" FontSize="18" Visibility="Collapsed" ToolTip="{Binding ErrorText,ElementName=IconButton3this}"/>
+            <TextBlock Grid.Column="1" Style="{StaticResource IFont}" Text="{Binding Icon,ElementName=IconButton3this}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="1" Text="{Binding Text ,ElementName=IconButton3this}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="16" Foreground="White"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="GridDelete" HorizontalAlignment="Right" Width="40" Background="Transparent" Visibility="Collapsed" MouseDown="GridDelete_MouseDown" MouseUp="GridDelete_MouseUp" MouseLeave="GridDelete_MouseLeave">
+            <TextBlock Style="{StaticResource IFont}" Text="&#xe74d;" FontSize="16" Foreground="Red"/>
+        </Grid>
+    </Grid>
+</UserControl>

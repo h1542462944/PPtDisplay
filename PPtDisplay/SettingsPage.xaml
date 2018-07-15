@@ -4,10 +4,24 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PPtDisplay"
+      xmlns:model="clr-namespace:PPtDisplay.Model"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
       Title="SettingsPage">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Style="{StaticResource TextBlockTitle}" Text=" > 进入列表的文件夹"/>
+        <model:IconButton3 Grid.Row="2" Icon="&#xe710;" Text="添加文件夹" IsDeleteShown="False" Click="IconButton3AddFolder_Click"/>
+        <ScrollViewer Grid.Row="3" Style="{StaticResource IScrollViewer}">
+            <StackPanel x:Name="StackPanel1">
+
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
