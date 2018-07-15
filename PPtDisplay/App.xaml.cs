@@ -112,7 +112,7 @@ namespace PPtDisplay
         {
             if (App.PPtWatcher.Application== null)
             {
-                App.PPtWatcher.ExitDisplay();
+                App.GotoMainWindow();
             }
         }
         /// <summary>
