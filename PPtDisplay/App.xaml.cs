@@ -29,10 +29,6 @@ namespace PPtDisplay
                     {
                         Directory.CreateDirectory(LocalCache);
                     }
-                    if (!Directory.Exists(DataCache))
-                    {
-                        Directory.CreateDirectory(DataCache);
-                    }
                 }
                 IsStorageLoaded = true;
             });
@@ -93,7 +89,6 @@ namespace PPtDisplay
         public static MainWindow Window { get; set; }
         public static DisplayWindow DisplayWindow { get; set; } 
         public static string WindowSettingsPath => LocalCache + "WindowSettings.xml";
-        public static string DataCache => LocalCache + @"Data\";
         public static List<string> PPts { get; set; } = new List<string>();
         internal static readonly Inventory Inventory = new Inventory();
         public static PPtWatcher PPtWatcher { get; set; } = new PPtWatcher();

@@ -27,29 +27,5 @@ namespace PPtDisplay.Data
         {
             @"D:\PPt\"
         };
-        public long CurrentIndex { get; set; } = 0L;
-        public List<PPtUsageRecord> Records { get; set; } = new List<PPtUsageRecord>();
-        public PPtUsageRecord CreateNewPPtUsageRecord(string fullName)
-        {
-            CurrentIndex++;
-            PPtUsageRecord record = new PPtUsageRecord() { FullName = fullName, StartTime = DateTime.Now, ID = CurrentIndex };
-            if (!Directory.Exists(record.DataCache))
-            {
-                Directory.CreateDirectory(record.DataCache);
-            }
-            return record;
-        }
-    }
-    public class PPtUsageRecord
-    {
-        public PPtUsageRecord()
-        {
-   
-        }
-
-        public string FullName { get; set; } = "";
-        public DateTime StartTime { get; set; } = new DateTime();
-        public long ID { get; set; } = 0L;
-        public string DataCache => App.DataCache + ID + @"\";
     }
 }
