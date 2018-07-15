@@ -1,0 +1,135 @@
+﻿<Window x:Class="PPtDisplay.DisplayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PPtDisplay"
+        xmlns:model="clr-namespace:PPtDisplay.Model"
+        mc:Ignorable="d"
+        Title="DisplayWindow"  Height="450" Width="800" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize" AllowsTransparency="True"
+        Background="Transparent" Topmost="True" MouseUp="Window_MouseUp" MouseMove="Window_MouseMove" >
+    <Grid>
+        <InkCanvas x:Name="InkCanvas1" Background="#01ffffff" Visibility="Collapsed" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--ea3a-->
+                <model:IconButton x:Name="IconButtonHide" Text="&#xe81d;" FontSize="24" Foreground="#ff038387" ColorStyle="Dark" Click="IconButtonHide_Click"/>
+                <Grid x:Name="GridMenu" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <model:IconButton Text="&#xe760;" FontSize="24" ColorStyle="Dark" Foreground="White" Click="IconButtonPres_Click"/>
+                        <Grid  Grid.Column="1"  Background="#cc000000">
+                            <TextBlock x:Name="TextBlock1Left" Text="14/85" FontSize="18" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                        <model:IconButton Grid.Column="2" Text="&#xe761;" FontSize="24" ColorStyle="Dark" Foreground="White" Click="IconButtonNext_Click"/>
+
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <model:IconButton x:Name="IconButton0" Text="&#xe7c9;" FontSize="18" Foreground="#038387" ColorStyle="Dark" Click="IconButtonEdit_Click"/>
+                        <model:IconButton x:Name="IconButton1" Grid.Column="1" Text="&#xed64;" FontSize="16" Foreground="White" ColorStyle="Dark" Click="IconButtonEdit_Click"/>
+                        <model:IconButton x:Name="IconButton2" Grid.Column="2" Text="&#xed61;" FontSize="20" Foreground="White" ColorStyle="Dark" Click="IconButtonEdit_Click"/>
+                        <model:IconButton x:Name="IconButton3" Grid.Column="3 " Text="&#xe8b3;" FontSize="18" Foreground="White" ColorStyle="Dark" Click="IconButtonEdit_Click"/>
+                        <Popup x:Name="Popup1" PlacementTarget="{Binding ElementName=IconButton1}" StaysOpen="False" HorizontalOffset="-80" VerticalOffset="-240">
+                            <Grid Width="200" Background="#CCFFFFFF" Visibility="Visible">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="150"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="10"/>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="10"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Ellipse x:Name="ElpPenwidth" Grid.Column="0" Width="5" Height="5" Fill="Black" StrokeThickness="0"/>
+                                        <TextBlock Grid.Column="4" x:Name="LblPenwidth" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Text="5"  Foreground="#FF0D996B"  FontSize="16"/>
+                                        <Grid Grid.Column="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="3*"/>
+                                                <RowDefinition Height="2*"/>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="2*"/>
+                                                <RowDefinition Height="3*"/>
+                                            </Grid.RowDefinitions>
+                                            <Border x:Name="BdISB" Grid.Row="2" Background="#FF277864" />
+                                            <Grid Margin="-10,0" Grid.RowSpan="5">
+                                                <Border x:Name="BdISM" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Left" Width="8"  Margin="6,2.5,0,2.5" Background="#FF4B4B4B"/>
+                                                <Border x:Name="BorderInkSize" Background="Transparent" MouseMove="BorderInkSize_MouseMove" MouseDown="BorderInkSize_MouseDown"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid x:Name="GridInkColorBox" Grid.Row="1"/>
+                                    <Grid Grid.Row="1">
+                                        <Ellipse x:Name="ElpInkColorSelect" StrokeThickness="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Stroke="White"/>
+                                    </Grid>
+                                </Grid>
+                        
+                        </Popup>
+                        <Popup x:Name="Popup2" PlacementTarget="{Binding ElementName=IconButton2}" StaysOpen="False" HorizontalOffset="-80" VerticalOffset="-100">
+                            <Grid Background="#CCFFFFFF" Width="200" Height="40">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="5"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="20"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" x:Name="BdEM" HorizontalAlignment="Left" Margin="-15,0,0,0" Width="30" Fill="#FF2C7246"/>
+                                <Border x:Name="BdrEraser"  Grid.ColumnSpan="3" Grid.RowSpan="3" MouseDown="BdrEraser_MouseDown" Background="Transparent"/>
+                            </Grid>
+                        </Popup>
+              
+
+                    </Grid>
+                    <Grid Grid.Column="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <model:IconButton Text="&#xe760;" FontSize="24" ColorStyle="Dark" Foreground="White" Click="IconButtonPres_Click"/>
+                        <Grid  Grid.Column="1"  Background="#cc000000">
+                            <TextBlock x:Name="TextBlock1Right" Text="14/85" FontSize="18" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                        <model:IconButton Grid.Column="2" Text="&#xe761;" FontSize="24" ColorStyle="Dark" Foreground="White" Click="IconButtonNext_Click"/>
+
+                    </Grid>
+                    <model:IconButton Grid.Column="7" FontSize="18" Text="&#xe7e8;" Foreground="White" ColorStyle="Dark" Click="IconButtonClose_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

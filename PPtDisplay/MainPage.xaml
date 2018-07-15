@@ -1,0 +1,42 @@
+﻿<Page x:Class="PPtDisplay.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PPtDisplay"
+      xmlns:model="clr-namespace:PPtDisplay.Model"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage" Background="#cc000000">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <!--这是标题栏-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <model:IconButton Foreground="White" Text="&#xe713;" FontSize="14" Background="Transparent" Click="IconButtonSettings_Click"/>
+                <Grid Background="Transparent" x:Name="GridTitle" Grid.Column="1" >
+                    <TextBlock Text="PPtDisplay" Foreground="White" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </Grid>
+                <model:IconButton Foreground="White" Text="&#xe946;" Grid.Column="2" FontSize="16" Width="32"/>
+            </Grid>
+            <Frame x:Name="FrameContent" Grid.Row="1" NavigationUIVisibility="Hidden" />
+        </Grid>
+        <Grid x:Name="GridExtra" Visibility="Collapsed"> 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Frame x:Name="FrameSettings" Background="#cc000000"/>
+            <Border Grid.Column="1" Background="#44000000" MouseDown="BorderTool_MouseDown"/>
+        </Grid>
+    </Grid>
+</Page>

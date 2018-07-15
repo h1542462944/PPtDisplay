@@ -1,0 +1,26 @@
+﻿<UserControl x:Name="IconButton2this" x:Class="PPtDisplay.Model.IconButton2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PPtDisplay.Model"
+             mc:Ignorable="d" 
+             Height="60" Width="400" Background="Transparent" Margin="20,5" HorizontalAlignment="Center">
+    <Grid>
+        <Grid Background="Transparent" MouseDown="Grid_MouseDown" MouseMove="Grid_MouseMove" MouseLeave="Grid_MouseLeave" MouseUp="Grid_MouseUp">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock  FontFamily="Segoe MDL2 Assets" Text="{Binding Icon,ElementName=IconButton2this}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="1" Text="{Binding Text ,ElementName=IconButton2this}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="18" Foreground="White"/>
+                <TextBlock x:Name="TextBlock2" Margin="5,2,5,8" Grid.Row="1" FontSize="12" Foreground="LightGray" Text="" Visibility="Collapsed"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

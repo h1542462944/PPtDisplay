@@ -1,0 +1,31 @@
+﻿<Page x:Class="PPtDisplay.OpenPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PPtDisplay"
+      xmlns:model="clr-namespace:PPtDisplay.Model"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OpenPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="440"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <model:IconButton2 Icon="&#xe8e5;" Text="打开文件"/>
+            <ScrollViewer Grid.Row="1" Style="{StaticResource IScrollViewer}">
+                <StackPanel x:Name="StackPanel">
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
